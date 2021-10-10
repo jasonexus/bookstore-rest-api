@@ -1,0 +1,172 @@
+swaggerDoc:
+  openapi: 3.0.0
+  info:
+    title: Bookstore API
+    version: 1.0.0
+    description: Bookstore API design.
+  servers:
+    - url: 'http://localhost:3000'
+  paths:
+    '/books/?apikey={apikey}':
+      get:
+        description: Get all the books
+        tags:
+          - Books
+        parameters:
+          - in: query
+            name: apikey
+            schema:
+              type: string
+            required: true
+            description: The api key.
+        responses:
+          '200':
+            description: The list of books.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Book'
+      post:
+        description: Add a book
+        tags:
+          - Books
+        parameters:
+          - in: query
+            name: apikey
+            schema:
+              type: string
+            required: true
+            description: The api key.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        responses:
+          '200':
+            description: One book was added.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Book'
+    '/books/{isbn13}/?apikey={apikey}':
+      get:
+        description: Get one of the books
+        tags:
+          - Books
+        parameters:
+          - in: query
+            name: apikey
+            schema:
+              type: string
+            required: true
+            description: The api key.
+          - in: path
+            name: isbn13
+            schema:
+              type: string
+            required: true
+            description: Give the isbn of the book.
+        responses:
+          '200':
+            description: One of the books was given.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Book'
+      put:
+        description: Get one of the books
+        tags:
+          - Books
+        parameters:
+          - in: query
+            name: apikey
+            schema:
+              type: string
+            required: true
+            description: The api key.
+          - in: path
+            name: isbn13
+            schema:
+              type: string
+            required: true
+            description: Give the isbn of the book.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        responses:
+          '200':
+            description: One of the books was given.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Book'
+      delete:
+        description: Delete one of the books
+        tags:
+          - Books
+        parameters:
+          - in: query
+            name: apikey
+            schema:
+              type: string
+            required: true
+            description: The api key.
+          - in: path
+            name: isbn13
+            schema:
+              type: string
+            required: true
+            description: Give the isbn of the book.
+        responses:
+          '200':
+            description: Delete one of the books.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Book'
+  components:
+    schemas:
+      Book:
+        type: object
+        required:
+          - title
+          - isbn13
+          - details
+          - publisher
+          - year
+          - price
+        properties:
+          title:
+            type: string
+            description: The title of the book.
+          isbn13:
+            type: string
+            description: The isbn13 of the book.
+          details:
+            type: string
+            description: The details of the book.
+          publisher:
+            type: string
+            description: The publisher of the book.
+          year:
+            type: number
+            description: The date the book was published.
+          price:
+            type: number
+            description: The price of the book.
+        example:
+          title: The Best Book Ever
+          isbn13: '2348957489354'
+          details: 'A really, really good book'
+          publisher: Good Book Productions
+          year: 2021
+          price: 3.5
+  tags:
+    - name: Books
+      description: API to manage your books.
+customOptions: {}

@@ -1,0 +1,31 @@
+components:
+  schemas:
+    Book:
+      type: object
+      required:
+        - title
+        - isbn13
+        - details
+        - publisher
+        - year
+        - price
+      properties:
+        title: 
+          type: string
+          description: Title of the book.
+        isbn13:
+          type: string
+          description: ISBN code of the book.
+        details:
+          type: string
+          description: Details of the book.
+        publisher:
+          type: string
+          description: Publisher of the book.
+        year:
+          type: number
+          description: Year the book was published.
+        price:
+          type: number
+          description: Price of the book.
+

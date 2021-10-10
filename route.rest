@@ -1,0 +1,44 @@
+
+
+PUT http://localhost:3000/books/48959457479575/
+Content-Type: application/json
+
+{
+  "title": "A Really Really REALLY REALLY REALLY Good Book"
+}
+
+###
+
+GET http://localhost:3000/books/4895945747954/?apikey=hK0iP5dL7bW3fP3y
+
+###
+
+PATCH http://localhost:3000/books/1234567891234/hK0iP5dL7bW3fP3y
+Content-Type: application/json
+
+{
+  "isbn13": "2434"
+}
+
+###
+
+DELETE http://localhost:3000/books/90943430435/hK0iP5dL7bW3fP3y
+
+###
+
+OPTIONS http://localhost:3000/books/1234567891234/hK0iP5dL7bW3fP3y
+
+###
+
+POST http://localhost:3000/books/hK0iP5dL7bW3fP3y
+Content-Type: application/json
+
+{
+  "title": "Route Rest",
+  "isbn13": "2434",
+  "details": "nfjsdgdsgsgbdsjkgs",
+  "publisher": "Good Books",
+  "year": 2022,
+  "price": 5.46
+
+}
