@@ -66,7 +66,7 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
 
 //Get the server to run in a particular port
-app.listen(3000, () => {
+app.listen(3000, '127.0.0.1', () => {
     console.log("server started");
 });
 
