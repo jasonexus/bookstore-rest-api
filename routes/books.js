@@ -137,8 +137,14 @@ router.get('/:isbn/', async (req, res) => {
 
         try {
             const book = await Book.find({isbn13:req.params.isbn}, {_id: 0})
-            
-            res.status(200).json(book)
+            if (book.length == 0){
+                res.status(404).json({message: 'The requested resource was not found'})
+            }
+            else{
+                for (var i = 0; i < book.length; i++){
+                    res.status(200).json(book[i])
+                }
+            } 
     
         } catch (error) {
             res.status(404).json({message: 'The requested resource was not found'})
@@ -323,9 +329,6 @@ router.put('/:isbn/', async (req, res) => {
  *      
  *        
  */
-
-
-
 // Delete one book
 router.delete('/:isbn', async (req, res) => {
 
@@ -349,28 +352,55 @@ router.delete('/:isbn', async (req, res) => {
 
 //405 HTTP Responses
 
+router.put('/', async (req, res) => {
+    const apikey = req.query.apikey
+    if (apikey != 'hK0iP5dL7bW3fP3y'){
+        res.status(401).json({message: 'The request didn’t include an API key, or the key was invalid'})
+    }
+    res.status(405).json({message: 'The method was not supported by the resource'})
+})
+
+
+router.delete('/', async (req, res) => {
+    const apikey = req.query.apikey
+    if (apikey != 'hK0iP5dL7bW3fP3y'){
+        res.status(401).json({message: 'The request didn’t include an API key, or the key was invalid'})
+    }
+    res.status(405).json({message: 'The method was not supported by the resource'})
+})
+
+router.post('/:isbn13', async (req, res) => {
+    const apikey = req.query.apikey
+    if (apikey != 'hK0iP5dL7bW3fP3y'){
+        res.status(401).json({message: 'The request didn’t include an API key, or the key was invalid'})
+    }
+    res.status(405).json({message: 'The method was not supported by the resource'})
+})
+
+
+
 //HEAD
-router.head('/:isbn/:apikey', async (req, res) => {
+router.head('/*', async (req, res) => {
     res.status(405).json({message: 'The HEAD method was not supported by the resource'})
 })
 
 //CONNECT
-router.connect('/:isbn/:apikey', async (req, res) => {
+router.connect('/*', async (req, res) => {
     res.status(405).json({message: 'The CONNECT method was not supported by the resource'})
 })
 
 //OPTIONS
-router.options('/:isbn/:apikey', async (req, res) => {
+router.options('/*', async (req, res) => {
     res.status(405).json({message: 'The OPTIONS method was not supported by the resource'})
 })
 
 //TRACE
-router.trace('/:isbn/:apikey', async (req, res) => {
+router.trace('/*', async (req, res) => {
     res.status(405).json({message: 'The TRACE method was not supported by the resource'})
 })
 
 //PATCH
-router.patch('/:isbn/:apikey', async (req, res) => {
+router.patch('/*', async (req, res) => {
     res.status(405).json({message: 'The PATCH method was not supported by the resource'})
 })
 
