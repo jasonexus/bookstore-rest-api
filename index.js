@@ -46,7 +46,7 @@ const swaggerOptions = {
         },
     servers: [
         {
-            url: 'http://localhost:3000'
+            url: 'http://[::]:80'
         },
     ],
 
@@ -64,7 +64,7 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
 
 //Get the server to run in a particular port
-app.listen(3000, () => {
+app.listen(80, () => {
     console.log("server started");
 });
 
