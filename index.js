@@ -6,11 +6,9 @@ const bodyParser = require('body-parser')
 const cors = require('cors');
 const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUI = require('swagger-ui-express')
+const path = require('path')
 
-
-
-
-
+// app.use('/', express.static(path.resolve(__dirname, 'routes')))
 
 
 
